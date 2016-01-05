@@ -1,12 +1,14 @@
 package cz.ryvo.cubeworld.mesh;
 
+import cz.ryvo.asset.BlockTexture;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
+import org.newdawn.slick.opengl.Texture;
 
 import java.nio.FloatBuffer;
 
-public class Voxel {
+public class Cube {
 
     /**
            H_______________G
@@ -72,7 +74,7 @@ public class Voxel {
     private final int vertexBufferObjectHandle;
     private final FloatBuffer vertexBufferObject;
 
-    public Voxel() {
+    public Cube() {
         vertexBufferObject = BufferUtils.createFloatBuffer(vertexData.length);  // Allocate direct float buffer
         vertexBufferObject.put(vertexData).flip();  // Write data to the buffer and reset the position to zero
 
@@ -82,7 +84,7 @@ public class Voxel {
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0); // Tell GL we aren't using any named buffer since now
     }
 
-    public void render(float x, float y, float z, float xrot, float yrot, float zrot) {
+    public void render(float x, float y, float z, float xrot, float yrot, float zrot, BlockTexture texture) {
         GL11.glLoadIdentity();
 
         GL11.glTranslatef(x, y, z);
@@ -92,6 +94,7 @@ public class Voxel {
 
         GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
         GL11.glEnableClientState(GL11.GL_NORMAL_ARRAY);
+        GL11.glEnableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
         GL11.glEnableClientState(GL11.GL_COLOR_ARRAY);
 
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexBufferObjectHandle);

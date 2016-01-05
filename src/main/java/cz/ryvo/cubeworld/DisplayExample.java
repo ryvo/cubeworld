@@ -1,6 +1,8 @@
 package cz.ryvo.cubeworld;
 
-import cz.ryvo.cubeworld.mesh.Voxel;
+import cz.ryvo.asset.BlockTexture;
+import cz.ryvo.cubeworld.mesh.Cube;
+import cz.ryvo.exception.ResourceException;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -20,7 +22,8 @@ public class DisplayExample {
     private float lightAmbient[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     private float lightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     private float lightPosition[] = { 0.0f, 0.0f, 0.1f, 1.0f };
-    private Voxel voxel;
+    private Cube voxel;
+    private BlockTexture blockTexture;
 
     public static void main(String[] args) {
         DisplayExample displayExample = new DisplayExample();
@@ -30,7 +33,8 @@ public class DisplayExample {
     public void start() {
         try {
             init();
-            voxel = new Voxel();
+            loadTextures();
+            voxel = new Cube();
             while (!Display.isCloseRequested()) {
                 render();
                 Display.update();
@@ -66,7 +70,7 @@ public class DisplayExample {
     }
 
     private void initGL() {
-        //GL11.glEnable(GL11.GL_TEXTURE_2D); // Enable Texture Mapping
+        //GL11.glEnable(GL11.GL_TEXTURE_2D); // Enable AbstractTexture Mapping
         GL11.glShadeModel(GL11.GL_SMOOTH); // Enable Smooth Shading
         GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Black Background
         GL11.glClearDepth(1.0); // Depth Buffer Setup
@@ -93,9 +97,12 @@ public class DisplayExample {
         Display.destroy();
     }
 
+    private void loadTextures() {
+        blockTexture =  new BlockTexture("textures/dirt_with_grass.jpg");
+    }
     private void render() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
-        voxel.render(0, 0, -5, xrot, yrot ,zrot);
+        voxel.render(0, 0, -5, xrot, yrot ,zrot, blockTexture);
     }
 }
