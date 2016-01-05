@@ -12,6 +12,6 @@ public class BlockTexture extends AbstractTexture {
 
     @Override
     protected Vector2L expectedTextureSize() {
-        return new Vector2L(128, 256);
+        return new Vector2L(256, 256);
     }
 }

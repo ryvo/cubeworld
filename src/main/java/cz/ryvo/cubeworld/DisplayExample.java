@@ -70,12 +70,12 @@ public class DisplayExample {
     }
 
     private void initGL() {
-        //GL11.glEnable(GL11.GL_TEXTURE_2D); // Enable AbstractTexture Mapping
-        GL11.glShadeModel(GL11.GL_SMOOTH); // Enable Smooth Shading
         GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Black Background
         GL11.glClearDepth(1.0); // Depth Buffer Setup
         GL11.glEnable(GL11.GL_DEPTH_TEST); // Enables Depth Testing
+        GL11.glEnable(GL11.GL_TEXTURE_2D); // Enable AbstractTexture Mapping
         GL11.glEnable(GL11.GL_COLOR_MATERIAL);
+        GL11.glShadeModel(GL11.GL_SMOOTH); // Enable Smooth Shading
         GL11.glDepthFunc(GL11.GL_LEQUAL); // The Type Of Depth Testing To Do
         GL11.glMatrixMode(GL11.GL_PROJECTION); // Select The Projection Matrix
         GL11.glLoadIdentity(); // Reset The Projection Matrix
@@ -98,7 +98,7 @@ public class DisplayExample {
     }
 
     private void loadTextures() {
-        blockTexture =  new BlockTexture("textures/dirt_with_grass.jpg");
+        blockTexture =  new BlockTexture("textures/dirt_with_grass.png");
     }
     private void render() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);

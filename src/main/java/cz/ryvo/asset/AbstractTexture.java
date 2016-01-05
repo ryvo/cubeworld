@@ -34,8 +34,8 @@ public abstract class AbstractTexture {
 
     protected void checkTexture(Texture texture) {
         Vector2L expectedSize = expectedTextureSize();
-        if ( (expectedSize.getX() > 0 && texture.getTextureWidth() != expectedSize.getX())  ||
-             (expectedSize.getY() > 0 && texture.getTextureHeight() != expectedSize.getY())) {
+        if ( (expectedSize.getX() > 0 && texture.getImageWidth() != expectedSize.getX())  ||
+             (expectedSize.getY() > 0 && texture.getImageHeight() != expectedSize.getY())) {
             throw new ResourceException("Bad block texture size. Texture must be " + expectedSize.getX() +
                     "px wide and " + expectedSize.getY() + "px high.");
         }
