@@ -204,6 +204,10 @@ public class DisplayExample {
 
             glfwSwapBuffers(window); // swap the color buffers
 
+            xrot += 0.5f;
+            yrot += 0.4f;
+            zrot += 0.3f;
+
             // Poll for window events. The key callback above will only be
             // invoked during this call.
             glfwPollEvents();
@@ -221,12 +225,6 @@ public class DisplayExample {
     }
 
     private void render() {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
         voxel.render(0, 0, -5, xrot, yrot ,zrot, blockTexture);
-
-        xrot += 0.5f;
-        yrot += 0.4f;
-        zrot += 0.3f;
     }
 }

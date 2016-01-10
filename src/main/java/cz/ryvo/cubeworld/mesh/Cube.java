@@ -86,6 +86,12 @@ public class Cube {
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexBufferObjectHandle);  // Hey, GL, we will be using named buffer object we just generated
         GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertexBufferObject, GL15.GL_STATIC_DRAW);   // Write vertexBufferObject data to our named buffer object
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0); // Tell GL we aren't using any named buffer since now
+
+        GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
+        GL11.glEnableClientState(GL11.GL_NORMAL_ARRAY);
+        //GL11.glEnableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
+        GL11.glEnableClientState(GL11.GL_COLOR_ARRAY);
+
     }
 
     public void render(float x, float y, float z, float xrot, float yrot, float zrot, BlockTexture texture) {
@@ -96,22 +102,27 @@ public class Cube {
         GL11.glRotatef(yrot, 0.0f, 1.0f, 0.0f);
         GL11.glRotatef(zrot, 0.0f, 0.0f, 1.0f);
 
+/*
         GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
         GL11.glEnableClientState(GL11.GL_NORMAL_ARRAY);
-        GL11.glEnableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
-        //GL11.glEnableClientState(GL11.GL_COLOR_ARRAY);
+        //GL11.glEnableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
+        GL11.glEnableClientState(GL11.GL_COLOR_ARRAY);
+*/
 
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexBufferObjectHandle);
 
         GL11.glVertexPointer(VERTEX_POSITION_SIZE, GL11.GL_FLOAT, VERTEX_ATTRIBUTE_SIZE, FIRST_VERTEX_POSITION_POINTER);
-        GL11.glTexCoordPointer(VERTEX_TEXTURE_SIZE, GL11.GL_FLOAT, VERTEX_ATTRIBUTE_SIZE, FIRST_VERTEX_TEXTURE_POINTER);
         GL11.glNormalPointer(GL11.GL_FLOAT, VERTEX_ATTRIBUTE_SIZE, FIRST_VERTEX_NORMAL_POINTER);
-        //GL11.glColorPointer(VERTEX_COLOR_SIZE, GL11.GL_FLOAT, VERTEX_ATTRIBUTE_SIZE, FIRST_VERTEX_COLOR_POINTER);
+        //GL11.glTexCoordPointer(VERTEX_TEXTURE_SIZE, GL11.GL_FLOAT, VERTEX_ATTRIBUTE_SIZE, FIRST_VERTEX_TEXTURE_POINTER);
+        GL11.glColorPointer(VERTEX_COLOR_SIZE, GL11.GL_FLOAT, VERTEX_ATTRIBUTE_SIZE, FIRST_VERTEX_COLOR_POINTER);
 
         GL11.glDrawArrays(GL11.GL_QUADS, 0, TOTAL_NUMBER_OF_VERTICES);
 
+/*
         GL11.glDisableClientState(GL11.GL_VERTEX_ARRAY);
         GL11.glDisableClientState(GL11.GL_NORMAL_ARRAY);
+        //GL11.glDisableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
         GL11.glDisableClientState(GL11.GL_COLOR_ARRAY);
+*/
     }
 }
