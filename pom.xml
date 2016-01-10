@@ -13,38 +13,82 @@
         <java.version>1.8</java.version>
         <spring.version>4.2.1.RELEASE</spring.version>
         <apache-commons.version>1.10</apache-commons.version>
+        <lwjgl.version>3.0.0b</lwjgl.version>
         <natives.version>0.0.6</natives.version>
-        <lwjgl.version>2.9.3</lwjgl.version>
         <testng.version>6.9.9</testng.version>
     </properties>
 
     <repositories>
         <repository>
-            <id>mavenNatives</id>
-            <name>Maven Natives Repository</name>
-            <url>http://mavennatives.googlecode.com/svn/repo</url>
+            <id>central</id>
+            <name>Maven central repository</name>
+            <url>https://repo1.maven.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+
+        <repository>
+            <id>apache.snapshots</id>
+            <name>Apache Development Snapshot Repository</name>
+            <url>https://repository.apache.org/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <!--
+                <repository>
+                    <id>mavenNatives</id>
+                    <name>Maven Natives Repository</name>
+                    <url>http://mavennatives.googlecode.com/svn/repo</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+        -->
 
-        <repository>
+<!--        <repository>
             <id>slick</id>
             <name>slick</name>
             <url>http://slick.cokeandcode.com/mavenrepo</url>
-        </repository>
+        </repository>-->
     </repositories>
 
     <dependencies>
+<!--
         <dependency>
             <groupId>org.lwjgl.lwjgl</groupId>
+            <artifactId>lwjgl</artifactId>
+            <version>3.0.0b</version>
+            <scope>system</scope>
+            <systemPath>/home/vojta/Development/lwjgl/lwjgl_3_0_0b/jar/lwjgl.jar</systemPath>
+        </dependency>
+-->
+        <dependency>
+            <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl</artifactId>
             <version>${lwjgl.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.lwjgl.lwjgl</groupId>
-            <artifactId>lwjgl_util</artifactId>
+            <groupId>org.lwjgl</groupId>
+            <artifactId>lwjgl-platform</artifactId>
             <version>${lwjgl.version}</version>
+            <classifier>natives-windows</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.lwjgl</groupId>
+            <artifactId>lwjgl-platform</artifactId>
+            <version>${lwjgl.version}</version>
+            <classifier>natives-osx</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.lwjgl</groupId>
+            <artifactId>lwjgl-platform</artifactId>
+            <version>${lwjgl.version}</version>
+            <classifier>natives-linux</classifier>
         </dependency>
         <dependency>
             <groupId>org.slick2d</groupId>
@@ -66,6 +110,11 @@
             <artifactId>joml</artifactId>
             <version>1.6.7</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-imaging</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!-- TESTING -->
         <dependency>
             <groupId>org.testng</groupId>
@@ -85,19 +134,19 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>com.googlecode.mavennatives</groupId>
-                <artifactId>maven-nativedependencies-plugin</artifactId>
-                <version>0.0.7</version>
-                <executions>
-                    <execution>
-                        <id>unpacknatives</id>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+            <!--<groupId>com.googlecode.mavennatives</groupId>-->
+            <!--<artifactId>maven-nativedependencies-plugin</artifactId>-->
+            <!--<version>0.0.7</version>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>unpacknatives</id>-->
+            <!--<goals>-->
+            <!--<goal>copy</goal>-->
+            <!--</goals>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
